@@ -1,0 +1,14 @@
+encryption helper for php provides functions to encrypt, decrypt, and 
+sign data using gpg or pgp commands.
+
+encrypt_command, sends data to encrypt to stdin, returns result code
+encrypt_command expects a gpg command like
+/usr/bin/gpg --homedir /home/www-data/.gnupg --armor --batch -e -r 'USERNAME'
+
+decrypt_command, sends passphrase to stdin, returns decrypted data
+decrypt_command expects a gpg command like:
+/usr/bin/gpg --homedir /home/www-data/.gnupg --passphrase-fd 0 --yes --no-tty --skip-verify --decrypt file.gpg
+ 
+sign_command, sends passphrase to stdin for a file signature, returns nothing on success
+sign_command expects a gpg command like:
+/usr/bin/gpg --homedir /home/www-data/.gnupg --passphrase-fd 0 --yes --no-tty --clearsign file.tmp
